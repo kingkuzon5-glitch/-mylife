@@ -1,0 +1,171 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../../app/**/*.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-discipline-green: #10b981;
+    --color-command-blue: #2563eb;
+    --color-focus-orange: #f97316;
+    --color-error: #ba1a1a;
+
+    --color-background: var(--axiom-background);
+    --color-surface: var(--axiom-surface);
+    --color-surface-container-lowest: var(--axiom-surface-container-lowest);
+    --color-surface-container-low: var(--axiom-surface-container-low);
+    --color-surface-container: var(--axiom-surface-container);
+    --color-surface-container-high: var(--axiom-surface-container-high);
+    --color-surface-container-highest: var(--axiom-surface-container-highest);
+    --color-on-surface: var(--axiom-on-surface);
+    --color-on-surface-variant: var(--axiom-on-surface-variant);
+    --color-outline: var(--axiom-outline);
+    --color-outline-variant: var(--axiom-outline-variant);
+    --color-primary: var(--axiom-primary);
+    --color-on-primary: var(--axiom-on-primary);
+
+    --text-headline-xl: 40px;
+    --text-headline-xl--line-height: 48px;
+    --text-headline-xl--font-weight: 800;
+    --text-headline-xl--letter-spacing: -0.02em;
+
+    --text-headline-lg: 30px;
+    --text-headline-lg--line-height: 36px;
+    --text-headline-lg--font-weight: 700;
+    --text-headline-lg--letter-spacing: -0.01em;
+
+    --text-headline-md: 20px;
+    --text-headline-md--line-height: 28px;
+    --text-headline-md--font-weight: 600;
+
+    --text-body-lg: 18px;
+    --text-body-lg--line-height: 28px;
+
+    --text-body-md: 16px;
+    --text-body-md--line-height: 24px;
+
+    --text-mono-data: 14px;
+    --text-mono-data--line-height: 20px;
+    --text-mono-data--font-weight: 500;
+
+    --text-label-caps: 12px;
+    --text-label-caps--line-height: 16px;
+    --text-label-caps--font-weight: 700;
+    --text-label-caps--letter-spacing: 0.05em;
+}
+
+:root {
+    --axiom-background: #fcf8fa;
+    --axiom-surface: #fcf8fa;
+    --axiom-surface-container-lowest: #ffffff;
+    --axiom-surface-container-low: #f6f3f5;
+    --axiom-surface-container: #f0edef;
+    --axiom-surface-container-high: #eae7e9;
+    --axiom-surface-container-highest: #e4e2e4;
+    --axiom-on-surface: #1b1b1d;
+    --axiom-on-surface-variant: #45464d;
+    --axiom-outline: #76777d;
+    --axiom-outline-variant: #c6c6cd;
+    --axiom-primary: #000000;
+    --axiom-on-primary: #ffffff;
+}
+
+.dark {
+    --axiom-background: #131315;
+    --axiom-surface: #131315;
+    --axiom-surface-container-lowest: #0c0c0d;
+    --axiom-surface-container-low: #19191b;
+    --axiom-surface-container: #1e1e21;
+    --axiom-surface-container-high: #29292c;
+    --axiom-surface-container-highest: #333336;
+    --axiom-on-surface: #e4e2e4;
+    --axiom-on-surface-variant: #c6c6cd;
+    --axiom-outline: #8f8f96;
+    --axiom-outline-variant: #3a3a3d;
+    --axiom-primary: #ffffff;
+    --axiom-on-primary: #000000;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-background);
+        background-image:
+            radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 0.03) 0, transparent 50%),
+            radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.03) 0, transparent 50%),
+            radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.03) 0, transparent 50%);
+    }
+
+    .dark body {
+        background-image:
+            radial-gradient(at 0% 0%, hsla(253, 16%, 70%, 0.05) 0, transparent 50%),
+            radial-gradient(at 50% 0%, hsla(225, 39%, 70%, 0.05) 0, transparent 50%),
+            radial-gradient(at 100% 0%, hsla(339, 49%, 70%, 0.05) 0, transparent 50%);
+    }
+}
+
+@layer components {
+    .glass-panel {
+        background: rgb(255 255 255 / 60%);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgb(255 255 255 / 40%);
+        box-shadow: 0 4px 30px rgb(0 0 0 / 3%);
+    }
+
+    .dark .glass-panel {
+        background: rgb(27 27 29 / 60%);
+        border: 1px solid rgb(255 255 255 / 5%);
+        box-shadow: 0 4px 30px rgb(0 0 0 / 20%);
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        font-family: 'Material Symbols Outlined';
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .icon-fill {
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .axiom-loader-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background: conic-gradient(from 0deg, transparent 0%, transparent 60%, var(--color-command-blue) 100%);
+        mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 100%);
+        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 100%);
+        animation: axiom-loader-spin 1s linear infinite;
+    }
+
+    .axiom-loader-glow {
+        position: absolute;
+        inset: -8px;
+        border-radius: 9999px;
+        background: conic-gradient(from 0deg, transparent 0%, transparent 60%, var(--color-command-blue) 100%);
+        filter: blur(12px);
+        opacity: 0.6;
+        animation: axiom-loader-spin 1s linear infinite;
+    }
+
+    @keyframes axiom-loader-spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
