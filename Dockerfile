@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-# Install system dependencies, Nginx, and PHP extensions needed by Laravel
+# Install system dependencies, Nginx, and required PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     nginx \
-    && docker-php-ext-install pdo_mysql mbstring exim bcmath gd
+    && docker-php-ext-install pdo_mysql mbstring exif bcmath gd
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
