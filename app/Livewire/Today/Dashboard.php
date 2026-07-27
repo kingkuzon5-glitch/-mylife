@@ -78,6 +78,7 @@ class Dashboard extends Component
         $vitals = $this->buildVitals($checklist);
 
         return view('livewire.today.dashboard', [
+            'greeting' => $this->buildGreeting(),
             'checklist' => $checklist,
             'completedCount' => $completedCount,
             'totalCount' => $totalCount,
@@ -141,6 +142,15 @@ class Dashboard extends Component
                 ? $category.' — before '.Carbon::parse($habit->target_time)->format('g:i A')
                 : $category,
             default => $category,
+        };
+    }
+
+    private function buildGreeting(): string
+    {
+        return match (true) {
+            now()->hour < 12 => 'Good morning',
+            now()->hour < 17 => 'Good afternoon',
+            default => 'Good evening',
         };
     }
 
