@@ -77,8 +77,13 @@ class Dashboard extends Component
 
         $vitals = $this->buildVitals($checklist);
 
+        $circumference = round(2 * M_PI * 74, 2);
+        $scoreOffset = round($circumference * (1 - ($score->overall_score / 100)), 2);
+
         return view('livewire.today.dashboard', [
             'greeting' => $this->buildGreeting(),
+            'circumference' => $circumference,
+            'scoreOffset' => $scoreOffset,
             'checklist' => $checklist,
             'completedCount' => $completedCount,
             'totalCount' => $totalCount,
