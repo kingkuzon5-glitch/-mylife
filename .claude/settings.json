@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(render --version)",
+      "Bash(docker build *)",
+      "Bash(npm --version)",
+      "Bash(curl -s https://mylife-4g8h.onrender.com/login)",
+      "Bash(git commit -m ' *)",
+      "Bash(git fetch *)"
+    ]
+  }
+}

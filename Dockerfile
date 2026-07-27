@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-# Install system dependencies, Nginx, PostgreSQL headers, Node.js, and npm
+# Install system dependencies, Nginx, and PostgreSQL extensions
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -11,8 +11,6 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     nginx \
-    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
-    && apt-get install -y nodejs \
     && docker-php-ext-install pdo_pgsql pgsql mbstring exif bcmath gd
 
 # Get latest Composer
@@ -21,15 +19,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
-# Copy application files
+# Copy application files (including pre-built public/build folder)
 COPY . /var/www
 
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
-
-# Install Node dependencies and build assets
-RUN npm install
-RUN npm run build
 
 # Set permissions for storage and bootstrap cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
