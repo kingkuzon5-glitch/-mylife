@@ -157,8 +157,6 @@
                     }
                 });
 
-                Alpine.store('axiomLoader', { visible: false });
-
                 const SHOW_DELAY = 150;
                 const MIN_VISIBLE = 250;
                 let pending = 0;
